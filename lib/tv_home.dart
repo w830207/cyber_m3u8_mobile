@@ -60,6 +60,19 @@ class TvHomePage extends StatelessWidget {
                     style: FontTheme.w01,
                   ),
                 ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const TvDetailPage(type: TvType.sport)));
+                  },
+                  child: Text(
+                    "體育",
+                    style: FontTheme.w01,
+                  ),
+                ),
               ],
             ),
           ),
