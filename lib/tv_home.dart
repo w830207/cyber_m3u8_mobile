@@ -1,9 +1,9 @@
+import 'package:cyber_m3u8_mobile/maps.dart';
 import 'package:cyber_m3u8_mobile/theme/app_theme.dart';
+import 'package:cyber_m3u8_mobile/tv_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'news.dart';
-import 'normal.dart';
-import 'movie.dart';
+
 
 class TvHomePage extends StatelessWidget {
   const TvHomePage({Key? key}) : super(key: key);
@@ -26,7 +26,8 @@ class TvHomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NormalPage()));
+                            builder: (context) =>
+                                const TvDetailPage(type: TvType.normal)));
                   },
                   child: Text(
                     "綜合",
@@ -38,7 +39,8 @@ class TvHomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NewsPage()));
+                            builder: (context) =>
+                                const TvDetailPage(type: TvType.news)));
                   },
                   child: Text(
                     "新聞",
@@ -50,7 +52,8 @@ class TvHomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MoviePage()));
+                            builder: (context) =>
+                                const TvDetailPage(type: TvType.movie)));
                   },
                   child: Text(
                     "電影",
