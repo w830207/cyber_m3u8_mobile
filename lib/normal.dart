@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'package:cyber_m3u8_mobile/theme/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'env/app_config.dart';
-import 'video_player.dart';
+import 'theme/app_theme.dart';
+import 'widgets/video_player.dart';
+import 'widgets/floating_action_button.dart';
 
 class NormalPage extends StatefulWidget {
   const NormalPage({Key? key}) : super(key: key);
@@ -248,9 +249,8 @@ class _NormalPageState extends State<NormalPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        mini: true,
-        backgroundColor: show ? Colors.red : Colors.black,
+      floatingActionButton: MyFloatingActionButton(
+        show: show,
         onPressed: () {
           if (show) {
             setState(() {
@@ -260,10 +260,6 @@ class _NormalPageState extends State<NormalPage> {
             Navigator.pop(context);
           }
         },
-        tooltip: '關閉播放器',
-        child: show
-            ? const Icon(Icons.close)
-            : const Icon(Icons.arrow_back_ios_new),
       ),
     );
   }

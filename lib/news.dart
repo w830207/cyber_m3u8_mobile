@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'package:cyber_m3u8_mobile/env/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'env/app_config.dart';
 import 'theme/app_theme.dart';
-import 'video_player.dart';
+import 'widgets/floating_action_button.dart';
+import 'widgets/video_player.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -176,8 +177,8 @@ class _NewsPageState extends State<NewsPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: show ? Colors.red : Colors.black,
+      floatingActionButton: MyFloatingActionButton(
+        show: show,
         onPressed: () {
           if (show) {
             setState(() {
@@ -187,10 +188,6 @@ class _NewsPageState extends State<NewsPage> {
             Navigator.pop(context);
           }
         },
-        tooltip: '關閉播放器',
-        child: show
-            ? const Icon(Icons.close)
-            : const Icon(Icons.arrow_back_ios_new),
       ),
     );
   }

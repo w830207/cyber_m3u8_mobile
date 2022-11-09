@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'tv_home.dart';
 import 'theme/app_theme.dart';
-import 'video_player.dart';
+import 'widgets/video_player.dart';
+import 'widgets/floating_action_button.dart';
 
 class M3u8HomePage extends StatefulWidget {
   const M3u8HomePage({Key? key}) : super(key: key);
@@ -135,17 +136,17 @@ class _M3u8HomePageState extends State<M3u8HomePage> {
         ],
       ),
       floatingActionButton: show
-          ? FloatingActionButton(
-              backgroundColor: Colors.red,
+          ? MyFloatingActionButton(
+              show: show,
               onPressed: () {
                 if (show) {
                   setState(() {
                     show = false;
                   });
+                } else {
+                  Navigator.pop(context);
                 }
               },
-              tooltip: '關閉播放器',
-              child: const Icon(Icons.close),
             )
           : null,
     );
