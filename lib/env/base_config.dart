@@ -2,5 +2,7 @@
 abstract class BaseConfig {
   String get ENV;
 
-  String get AD_UNIT;
+  String get AD_UNIT_IOS;
+
+  String get AD_UNIT_ANDROID;
 }

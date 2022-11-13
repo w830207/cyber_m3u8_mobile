@@ -6,5 +6,8 @@ class DevConfig implements BaseConfig {
   String get ENV => "DEV";
 
   @override
-  String get AD_UNIT => "ca-app-pub-3940256099942544/2934735716";
+  String get AD_UNIT_IOS => "ca-app-pub-3940256099942544/2934735716";
+
+  @override
+  String get AD_UNIT_ANDROID => "ca-app-pub-3940256099942544/2934735716";
 }

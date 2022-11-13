@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,9 @@ class _TvDetailPageState extends State<TvDetailPage> {
 
     _anchoredAdaptiveAd = BannerAd(
       // TODO: replace these test ad units with your own ad unit.
-      adUnitId: AppConfig.config.AD_UNIT,
+      adUnitId: Platform.isIOS
+          ? AppConfig.config.AD_UNIT_IOS
+          : AppConfig.config.AD_UNIT_ANDROID,
       size: size,
       request: const AdRequest(),
       listener: BannerAdListener(
