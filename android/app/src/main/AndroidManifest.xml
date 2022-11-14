@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cyber_m3u8_mobile">
+    package="com.cbw.cyber_m3u8_mobile">
    <application
         android:label="Cyber M3U8"
         android:name="${applicationName}"
@@ -34,4 +34,5 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-4395193078201506~1379915378"/>
     </application>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 </manifest>
