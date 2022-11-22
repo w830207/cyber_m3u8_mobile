@@ -8,14 +8,14 @@ import 'env/app_config.dart';
 import 'theme/app_theme.dart';
 import 'widgets/video_player.dart';
 import 'widgets/floating_action_button.dart';
-import 'maps.dart';
 
 class TvDetailPage extends StatefulWidget {
   const TvDetailPage({
     Key? key,
-    required this.type,
+    required this.map,
   }) : super(key: key);
-  final TvType type;
+
+  final Map map;
 
   @override
   State<TvDetailPage> createState() => _TvDetailPageState();
@@ -24,7 +24,6 @@ class TvDetailPage extends StatefulWidget {
 class _TvDetailPageState extends State<TvDetailPage> {
   bool show = false;
   String url = "";
-  late Map map;
 
   BannerAd? _anchoredAdaptiveAd;
   bool _isLoaded = false;
@@ -32,7 +31,6 @@ class _TvDetailPageState extends State<TvDetailPage> {
   @override
   void initState() {
     super.initState();
-    map = tvMap[widget.type] ?? tvMap.values.first;
   }
 
   @override
@@ -99,7 +97,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 100.r),
               child: GridView.builder(
-                itemCount: map.length,
+                itemCount: widget.map.length,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 300,
                   childAspectRatio: 1,
@@ -107,8 +105,8 @@ class _TvDetailPageState extends State<TvDetailPage> {
                   mainAxisSpacing: 20,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  final key = map.keys.toList()[index];
-                  final value = map[key];
+                  final key = widget.map.keys.toList()[index];
+                  final value = widget.map[key];
 
                   return Container(
                     decoration: const BoxDecoration(

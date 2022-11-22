@@ -1,6 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cyber_m3u8_mobile/data/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'tv_home.dart';
 import 'theme/app_theme.dart';
 import 'widgets/video_player.dart';
@@ -82,42 +85,54 @@ class _M3u8HomePageState extends State<M3u8HomePage> {
                               hintText: "enter m3u8 link..."),
                         ),
                       ),
-                      SizedBox(
-                        height: 50,
-                        child: DefaultTextStyle(
-                          style: const TextStyle(
-                            fontSize: 35,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 50.0,
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            child: DefaultTextStyle(
+                              style: const TextStyle(
+                                fontSize: 35,
                                 color: Colors.white,
-                                offset: Offset(0, 0),
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 50.0,
+                                    color: Colors.white,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
                               ),
-                            ],
+                              child: AnimatedTextKit(
+                                repeatForever: true,
+                                animatedTexts: [
+                                  FlickerAnimatedText('PLAY'),
+                                  FlickerAnimatedText('play'),
+                                  FlickerAnimatedText('播放'),
+                                ],
+                              ),
+                            ),
                           ),
-                          child: AnimatedTextKit(
-                            repeatForever: true,
-                            animatedTexts: [
-                              FlickerAnimatedText('PLAY'),
-                              FlickerAnimatedText('play'),
-                              FlickerAnimatedText('播放'),
-                            ],
-                            onTap: () {
+                          GestureDetector(
+                            onTap: () async {
                               if (tfController.text.toUpperCase() == "TV") {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const TvHomePage()));
+                                EasyLoading.show();
+                                final typeMap =
+                                    await ApiService.to.getTvTypeMap();
+                                EasyLoading.dismiss();
+                                Get.to(() => TvHomePage(typeMap: typeMap));
                               } else if (tfController.text.isNotEmpty) {
                                 setState(() {
                                   show = true;
                                 });
                               }
                             },
+                            child: Container(
+                              color: Colors.transparent,
+                              height: 50,
+                              width: 200,
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
